@@ -1,0 +1,20 @@
+Enterprise AI Adoption Guide
+
+What is Retrieval-Augmented Generation (RAG)?
+Retrieval-Augmented Generation (RAG) is an AI framework that combines information retrieval with large language model generation. Instead of relying solely on a model's parametric knowledge, RAG first retrieves relevant documents from a knowledge base and then uses those documents as grounding evidence when generating an answer. This approach significantly reduces hallucination and improves factual accuracy in enterprise question-answering systems.
+
+Why do enterprises use RAG?
+Enterprises adopt RAG for several key reasons:
+1. Accuracy — answers are grounded in verified internal documents rather than model assumptions
+2. Auditability — every claim can be traced back to a source document
+3. Freshness — knowledge base can be updated without retraining the model
+4. Cost — avoids expensive model fine-tuning for domain-specific knowledge
+
+What is hybrid retrieval?
+Hybrid retrieval combines sparse retrieval (BM25 keyword matching) with dense retrieval (semantic vector search). Sparse retrieval excels at exact keyword matches, such as product codes, names, and technical terminology. Dense retrieval captures semantic meaning, handling paraphrasing and conceptual queries. Combining both with Reciprocal Rank Fusion (RRF) consistently outperforms either method alone across enterprise benchmarks.
+
+What is an AI agent?
+An AI agent is a system that perceives its environment, makes decisions, and takes actions to achieve a goal. In enterprise settings, agents use tools (retrieval, summarisation, calculation) and follow a defined workflow to answer complex, multi-step queries. LangGraph is a framework for building such agents as explicit, auditable state machines.
+
+What is Model Context Protocol (MCP)?
+Model Context Protocol (MCP) is an open protocol developed by Anthropic for standardised communication between AI models and external tools. It defines how models discover, call, and receive results from tools in a consistent, interoperable way. MCP enables enterprise teams to build tool servers once and connect them to any MCP-compatible AI system.

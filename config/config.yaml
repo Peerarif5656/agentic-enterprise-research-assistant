@@ -1,0 +1,19 @@
+retriever:
+  top_k: 5
+  sparse_weight: 0.4
+  dense_weight: 0.6
+  chunk_size: 512
+  chunk_overlap: 64
+  embedding_model: "all-MiniLM-L6-v2"
+
+generation:
+  model: "claude-sonnet-4-6"
+  max_tokens: 1024
+  temperature: 0.0
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: false
+
+corpus_dir: "data/corpus"

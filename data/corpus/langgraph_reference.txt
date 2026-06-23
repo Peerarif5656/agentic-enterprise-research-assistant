@@ -1,0 +1,22 @@
+LangGraph Technical Reference
+
+What is LangGraph?
+LangGraph is a library for building stateful, multi-actor applications with large language models. It models workflows as directed graphs where nodes are processing steps (functions) and edges define the flow of control between them. LangGraph supports both deterministic and conditional routing, making it well-suited for agentic systems that must make decisions at runtime.
+
+Core concepts in LangGraph:
+
+State — A shared data structure (dataclass or TypedDict) that is passed between every node in the graph. Each node reads from the state, performs its task, and returns an updated state. State is the single source of truth throughout a graph run.
+
+Nodes — Python functions that take the current state as input and return an updated state. Nodes are where computation happens: LLM calls, tool invocations, data transformations.
+
+Edges — Define how execution flows between nodes. A standard edge always routes to the next node. A conditional edge calls a routing function that returns the name of the next node to execute, enabling dynamic branching based on the current state.
+
+START and END — Special built-in nodes. START is the entry point of every graph; END marks completion. Every execution path must eventually reach END.
+
+Compilation — Graphs are compiled before use. Compilation validates the graph structure (checks for disconnected nodes, missing edges) and returns an executable object with an invoke() method.
+
+How does LangGraph relate to LangChain?
+LangGraph is built on top of LangChain Core and uses LangChain's abstractions for messages, tools, and model interactions. However, LangGraph adds the graph execution layer and state management that LangChain's linear chains lack. For production agentic systems, LangGraph is preferred over LCEL chains because its control flow is explicit and inspectable.
+
+When should you use LangGraph?
+Use LangGraph when your AI system needs to: make routing decisions at runtime, execute conditional tool calls, maintain state across multiple steps, support human-in-the-loop intervention, or run multiple parallel branches. For simple single-step LLM calls, a direct Anthropic API call is simpler and preferable.
